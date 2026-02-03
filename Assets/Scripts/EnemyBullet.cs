@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour {
 
-    public float speed = 18.0f; // the bullets speed.
-    public float lifetime = 3.0f; // time in seconds before the bullet is destroyed.
+    public float speed = 8.0f; // the bullets speed.
+    public float lifetime = 1.0f; // time in seconds before the bullet is destroyed.
     public int damage = 1; // the bullets damage.
 
     void Start() {
@@ -11,17 +11,17 @@ public class EnemyBullet : MonoBehaviour {
     }
 
     void Update() {
-        // Move the bullet upwards at a given speed.
-        transform.position += Vector3.up * speed * Time.deltaTime;
+        // Move the bullet downwards at a given speed.
+        transform.position -= Vector3.up * speed * Time.deltaTime;
     }
 
-    // When a bullet collides with an enemy, reduce the enemies health
+    // When a bullet collides with the player, reduce the players health
     // and destroy the bullet after.
     private void OnTriggerEnter2D(Collider2D other) {
-        EnemyHealth enemy = other.GetComponent<EnemyHealth>();
+        PlayerHealth player = other.GetComponent<PlayerHealth>();
 
-        if (enemy != null) {
-            enemy.Hit(damage);
+        if (player != null) {
+            player.Hit(damage);
             Destroy(gameObject);
         }
     }
