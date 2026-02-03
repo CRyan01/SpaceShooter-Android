@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour {
+public class EnemyBullet : MonoBehaviour {
 
     public float speed = 18.0f; // the bullets speed.
     public float lifetime = 3.0f; // time in seconds before the bullet is destroyed.
