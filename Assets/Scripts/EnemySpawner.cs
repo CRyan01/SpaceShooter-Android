@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public GameObject[] enemyPrefabs; // an array of enemy prefabs.
     public float spawnInterval = 0.8f; // the time between new spawns.
-    public float xPadding = 0.7f; // padding to vary x position between spawns.
+    public float xPadding = 0.7f; // padding.
 
     private Camera camera; // a ref to the camera.
     private float nextSpawnTime; // time until the next spawn.

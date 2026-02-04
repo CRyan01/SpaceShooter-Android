@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DestroyOffscreen : MonoBehaviour {
+public class DestroyOutOfBounds : MonoBehaviour {
     [SerializeField] private float padding = 2.0f; // padding so that objects are destoryed out of sight.
 
 
