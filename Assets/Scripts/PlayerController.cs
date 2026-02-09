@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour {
     public float moveSpeed = 18.0f; // the players move speed.
@@ -14,10 +16,15 @@ public class PlayerController : MonoBehaviour {
     float targetX; // target x position based on input.
     float nextShotTime; // time when the next bullet can be fired.
 
+    private Coroutine fireRateRoutine; // a coroutine to increase the players firerate.
+    private float baseFireRate; // the players base fire rate.
+
     void Start() {
         camera = Camera.main; // get a ref to the main camera.
         GetBounds(); // get the screen bounds.
         targetX = transform.position.x; // set the target position to the current position.
+
+        baseFireRate = fireRate; // store the base fire rate to change it back later.
     }
 
     void Update() {
@@ -80,5 +87,30 @@ public class PlayerController : MonoBehaviour {
             // Set the time for the next shot.
             nextShotTime = Time.time + (1.0f / fireRate);
         }
+    }
+
+    // Adds a fire rate boost to the player for a set duration.
+    public void AddFireRate(float amount, float duration) {
+        // Check if a previous fire rate routine is active.
+        if (fireRateRoutine != null) {
+            // If so stop it and reset fire rate.
+            StopCoroutine(fireRateRoutine);
+            fireRate = baseFireRate;
+        }
+
+        // Start a new fire rate boost routine.
+        fireRateRoutine = StartCoroutine(FireRateBoostRoutine(amount, duration));
+    }
+
+    private IEnumerator FireRateBoostRoutine(float amount, float duration) {
+        // Apply the boosted fire rate value with a clamped limit.
+        fireRate = Mathf.Clamp(baseFireRate + amount, 1.0f, 20.0f);
+
+        // Run for a set amount of time.
+        yield return new WaitForSeconds(duration);
+
+        // When time runs out restore the normal fire rate, and routine state.
+        fireRate = baseFireRate;
+        fireRateRoutine = null;
     }
 }
