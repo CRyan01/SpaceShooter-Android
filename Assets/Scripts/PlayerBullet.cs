@@ -3,12 +3,7 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour {
 
     public float speed = 18.0f; // the bullets speed.
-    public float lifetime = 3.0f; // time in seconds before the bullet is destroyed.
     public int damage = 1; // the bullets damage.
-
-    void Start() {
-        Destroy(gameObject, lifetime);
-    }
 
     void Update() {
         // Move the bullet upwards at a given speed.
