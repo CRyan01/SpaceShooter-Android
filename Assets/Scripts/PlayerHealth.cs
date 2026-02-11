@@ -6,17 +6,20 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField] private int maxHealth = 3; // the starting health of the player.
     private int currentHealth; // the players current health.
 
-    [SerializeField] private int maxShieldCharges = 3;
+    [SerializeField] private int maxShieldCharges = 0;
     private int shieldCharges = 0; // the number shield charges the player has.
 
     public TMP_Text healthText; // to display health on the UI.
     public TMP_Text shieldText; // to display shield charges on the UI.
+
+    public GameObject shieldSprite;
 
     private void Awake() {
         // Set current health with inspector value.
         currentHealth = maxHealth;
 
         RefreshHUD();
+        RefreshShieldVisual();
     }
 
     // When the player takes a hit reduce health by a set amount.
@@ -36,6 +39,7 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         RefreshHUD();
+        RefreshShieldVisual();
     }
 
     // Heal the player by a set amount.
@@ -61,6 +65,7 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         RefreshHUD();
+        RefreshShieldVisual();
     }
 
     // Refresh the HUD with updated values.
@@ -71,6 +76,21 @@ public class PlayerHealth : MonoBehaviour {
 
         if (shieldText != null) {
             shieldText.text = "Shield: " + shieldCharges + "/" + maxShieldCharges;
+        }
+    }
+
+    // Refresh the shield visual
+    private void RefreshShieldVisual() {
+        // Check for a valid ref to the sprite.
+        if (shieldSprite == null) {
+            return;
+        }
+
+        // Toggle the shield sprite
+        if (shieldCharges > 0) {
+            shieldSprite.SetActive(true);
+        } else { 
+            shieldSprite.SetActive(false); 
         }
     }
 
