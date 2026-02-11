@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8577110326777645843}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -150,6 +150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   padding: 1.5
   destroyBelow: 0
-  destroyAbove: 1
+  destroyAbove: 0
   destroyLeft: 0
-  destroyRight: 0
+  destroyRight: 1

@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
@@ -12,8 +11,8 @@ public class PlayerController : MonoBehaviour {
 
     Camera camera; // reference to the main camera.
 
-    float xMin, xMax; // left and right movement limits.
-    float targetX; // target x position based on input.
+    float yMin, yMax; // top and bottom movement limits.
+    float targetY; // target y position based on input.
     float nextShotTime; // time when the next bullet can be fired.
 
     private Coroutine fireRateRoutine; // a coroutine to increase the players firerate.
@@ -22,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         camera = Camera.main; // get a ref to the main camera.
         GetBounds(); // get the screen bounds.
-        targetX = transform.position.x; // set the target position to the current position.
+        targetY = transform.position.y; // set the target position to the current position.
 
         baseFireRate = fireRate; // store the base fire rate to change it back later.
     }
@@ -36,12 +35,12 @@ public class PlayerController : MonoBehaviour {
     // Calculate the left and right screen bounds in world space.
     void GetBounds() {
         // Convert the left and right sides of the viewport to world space.
-        float left = camera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
-        float right = camera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
+        float bottom = camera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
+        float top = camera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
 
         // Apply padding to prevent clipping.
-        xMin = left + padding;
-        xMax = right - padding;
+        yMin = bottom + padding;
+        yMax = top - padding;
     }
 
     // Read the players input depending on platform.
@@ -50,14 +49,14 @@ public class PlayerController : MonoBehaviour {
         // Get mouse input for editor testing.
         if (Input.GetMouseButton(0)) {
             var worldPosition = camera.ScreenToWorldPoint(Input.mousePosition);
-            targetX = worldPosition.x;
+            targetY = worldPosition.y;
         }
 #else
         // Get touch input for android.
         if (Input.touchCount > 0) {
             var touchInput = Input.GetTouch(0);
             var worldPosition = camera.ScreenToWorldPoint(touchInput.position);
-            targetX = worldPosition.x;
+            targetX = worldPosition.y;
         }
 #endif
     }
@@ -65,11 +64,11 @@ public class PlayerController : MonoBehaviour {
     // Move the ship horizontally.
     void Move() {
         // Clamp the target position within screen bounds.
-        float x = Mathf.Clamp(targetX, xMin, xMax);
+        float y = Mathf.Clamp(targetY, yMin, yMax);
 
         // Move towards the target x position.
         var position = transform.position;
-        position.x = Mathf.MoveTowards(position.x, x, moveSpeed * Time.deltaTime);
+        position.y = Mathf.MoveTowards(position.y, y, moveSpeed * Time.deltaTime);
         transform.position = position;
     }
 
@@ -83,7 +82,7 @@ public class PlayerController : MonoBehaviour {
         // Check if enough time passed to fire another bullet.
         if (Time.time >= nextShotTime) {
             // Spawn a bullet at the firepoint.
-            Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             // Set the time for the next shot.
             nextShotTime = Time.time + (1.0f / fireRate);
         }

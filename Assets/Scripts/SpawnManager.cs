@@ -14,8 +14,8 @@ public class SpawnManager : MonoBehaviour {
     public float endSpawnInterval = 0.55f; // late game.
     public float duration = 180.0f; // seconds to reach the end spawn interval.
 
-    public float xPadding = 0.7f; // to prevent clipping.
-    public float yOffset = 1.5f; // to spawn outside of view.
+    public float yPadding = 0.7f; // to prevent clipping.
+    public float xOffset = 1.5f; // to spawn outside of view.
 
     // Stop normal spawns when fighting the last boss.
     public bool stopNormalSpawnsAfterMainBoss = true;
@@ -86,7 +86,7 @@ public class SpawnManager : MonoBehaviour {
         // Try to spawn a pickup when its time and theres no active boss.
         if (!isBossActive && Time.time >= nextPickupSpawnTime) {
             TrySpawnPickup();
-            nextPickupSpawnTime = Time.time + currentSpawnInterval;
+            nextPickupSpawnTime = Time.time + pickupSpawnInterval;
         }
     }
 
@@ -122,10 +122,10 @@ public class SpawnManager : MonoBehaviour {
             return;
         }
 
-        float centerX = camera.ViewportToWorldPoint(new Vector3(0.5f, 0.0f, 0.0f)).x;
-        float topY = camera.ViewportToWorldPoint(new Vector3(0.5f, 1.0f, 0.0f)).y + yOffset;
+        float rightX = camera.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 0.0f)).x + xOffset;
+        float centerY = camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f)).y;
 
-        GameObject boss = Instantiate(bossPrefab, new Vector3(centerX, topY, 0.0f), Quaternion.identity);
+        GameObject boss = Instantiate(bossPrefab, new Vector3(rightX, centerY, 0.0f), Quaternion.identity);
 
         activeBoss = boss;
         isBossActive = true;
@@ -149,19 +149,13 @@ public class SpawnManager : MonoBehaviour {
 
     // Spawn a pickup
     private void SpawnPickup() {
-        // Get world bounds from the viewport.
-        float leftX = camera.ViewportToWorldPoint(new Vector3(0.0f, 0.0f, 0.0f)).x + xPadding;
-        float rightX = camera.ViewportToWorldPoint(new Vector3(1.0f, 0.0f, 0.0f)).x - xPadding;
-        float topY = camera.ViewportToWorldPoint(new Vector3(0.5f, 1.0f, 0.0f)).y + yOffset;
-
-        // Generate a random x position to vary spawns.
-        float randomX = Random.Range(leftX, rightX);
+        Vector3 spawnPosition = GetRightEdgeSpawnPosition();
 
         // Select a random pickup to spawn from the array.
         GameObject pickupPrefab = pickupPrefabs[Random.Range(0, pickupPrefabs.Length)];
 
         // Create the selected pickup.
-        Instantiate(pickupPrefab, new Vector3(randomX, topY, 0.0f), Quaternion.identity);
+        Instantiate(pickupPrefab, spawnPosition, Quaternion.identity);
     }
 
     // Calculates spawn interval based on elapsed time, to increase difficulty.
@@ -180,20 +174,14 @@ public class SpawnManager : MonoBehaviour {
             return;
         }
 
-        // Get world bounds from the viewport.
-        float leftX = camera.ViewportToWorldPoint(new Vector3(0.0f, 0.0f, 0.0f)).x + xPadding;
-        float rightX = camera.ViewportToWorldPoint(new Vector3(1.0f, 0.0f, 0.0f)).x - xPadding;
-        float topY = camera.ViewportToWorldPoint(new Vector3(0.5f, 1.0f, 0.0f)).y + yOffset;
+        Vector3 spawnPosition = GetRightEdgeSpawnPosition();
 
-        // Generate a random x position to vary spawns.
-        float randomX = Random.Range(leftX, rightX);
-
+       
         // Select a random enemy from the spawn pool to spawn.
         GameObject enemyPrefab = spawnPool[Random.Range(0, spawnPool.Count)];
 
         // Create the selected enemy.
-        Instantiate(enemyPrefab, new Vector3(randomX, topY, 0.0f), Quaternion.identity);
-
+        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
 
     // Build the spawn pool by adding tiered arrays to the list of possible spawns
@@ -232,5 +220,19 @@ public class SpawnManager : MonoBehaviour {
                 spawnPool.Add(enemyArray[i]);
             }
         }
+    }
+
+    // Returns a spawn position on the right side of the screen.
+    private Vector3 GetRightEdgeSpawnPosition() {
+        // Get bounds from viewport and apply padding.
+        float bottomY = camera.ViewportToWorldPoint(new Vector3(0.0f, 0.0f, 0.0f)).y + yPadding;
+        float topY = camera.ViewportToWorldPoint(new Vector3(0.0f, 1.0f, 0.0f)).y - yPadding;
+        float rightX = camera.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 0.0f)).x + xOffset;
+
+        // Generate a random y within screen bounds to vary spawns.
+        float randomY = Random.Range(bottomY, topY);
+
+        // Return the position.
+        return new Vector3(rightX, randomY, 0.0f);
     }
 }

@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   padding: 1.5
-  destroyBelow: 1
+  destroyBelow: 0
   destroyAbove: 0
-  destroyLeft: 0
+  destroyLeft: 1
   destroyRight: 0

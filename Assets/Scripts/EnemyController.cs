@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour {
 
     void Move() {
         // Move the enemy downwards.
-        transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
     }
 
     // Automatically fire a bullet.
@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour {
         // Check if enough time passed to fire another bullet.
         if (Time.time >= nextShotTime) {
             // Spawn a bullet at the firepoint.
-            Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             // Set the time for the next shot.
             nextShotTime = Time.time + (1.0f / fireRate);
         }

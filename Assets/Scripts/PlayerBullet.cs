@@ -7,7 +7,7 @@ public class PlayerBullet : MonoBehaviour {
 
     void Update() {
         // Move the bullet upwards at a given speed.
-        transform.position += Vector3.up * speed * Time.deltaTime;
+        transform.position += Vector3.right * speed * Time.deltaTime;
     }
 
     // When a bullet collides with an enemy, reduce the enemies health
