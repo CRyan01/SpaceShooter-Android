@@ -165,6 +165,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+  explosionPrefab: {fileID: 542459209908818219, guid: 8e450e783c672f446b9a06a8e0e2bcbd, type: 3}
+  explosionFadeTime: 0.25
+  debrisPrefabs:
+  - {fileID: 6786660771849075281, guid: da86e71c9cd1950409b7d562b0f785a5, type: 3}
+  - {fileID: 8632074242307750272, guid: ef1bc205de5b8c947a3eead5eb5b0550, type: 3}
+  - {fileID: 1745467554202029217, guid: de1d20c7921cb3d4f96b14f251101fbe, type: 3}
 --- !u!114 &7911808180110750966
 MonoBehaviour:
   m_ObjectHideFlags: 0

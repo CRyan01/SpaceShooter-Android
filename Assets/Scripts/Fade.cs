@@ -28,7 +28,7 @@ public class Fade : MonoBehaviour {
         // Track elapsed time.
         float elapsedTime = 0.0f;
 
-        while (elapsedTime > fadeDuration) {
+        while (elapsedTime < fadeDuration) {
             // Update elapsed time.
             elapsedTime += Time.deltaTime;
 
@@ -39,6 +39,8 @@ public class Fade : MonoBehaviour {
 
             // Interpolate to reduce the alpha of the color based on elapsed time.
             newColor.a = Mathf.Lerp(1.0f, 0.0f, time);
+
+            spriteRenderer.color = newColor; // apply the updated color each frame.
 
             yield return null;
         }
