@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 4028604774374723147}
   - component: {fileID: 6676276040007911014}
   - component: {fileID: 4896590444394582829}
+  - component: {fileID: -6696588134655035732}
   - component: {fileID: 6317926373175096680}
   - component: {fileID: 7911808180110750966}
   - component: {fileID: 3735547319663587417}
@@ -114,7 +115,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516805961085637840}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -123,7 +124,7 @@ Transform:
   - {fileID: 6957606233087353375}
   - {fileID: 339599217849975127}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4028604774374723147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -238,6 +239,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.56
+--- !u!95 &-6696588134655035732
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516805961085637840}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9c53caf0a2a92b429d926fd9d4b30b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6317926373175096680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +279,7 @@ MonoBehaviour:
   - {fileID: 6786660771849075281, guid: da86e71c9cd1950409b7d562b0f785a5, type: 3}
   - {fileID: 8632074242307750272, guid: ef1bc205de5b8c947a3eead5eb5b0550, type: 3}
   - {fileID: 1745467554202029217, guid: de1d20c7921cb3d4f96b14f251101fbe, type: 3}
+  animator: {fileID: 0}
 --- !u!114 &7911808180110750966
 MonoBehaviour:
   m_ObjectHideFlags: 0

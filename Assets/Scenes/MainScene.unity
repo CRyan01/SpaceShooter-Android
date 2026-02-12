@@ -754,7 +754,7 @@ MonoBehaviour:
   - {fileID: 3038791948098880651, guid: 2b7f92f7ff843ba428d79e557dd0af4b, type: 3}
   - {fileID: 1192536932676302664, guid: aab405a5dca88be4db4d13a5e543f1d1, type: 3}
   - {fileID: 3144003115400894566, guid: 3bc2f4086345c9e4fa37a09fd5cc95f4, type: 3}
-  pickupSpawnInterval: 10
+  pickupSpawnInterval: 1
   pickupSpawnChance: 0.7
 --- !u!1 &1125442830
 GameObject:
@@ -1170,6 +1170,7 @@ GameObject:
   - component: {fileID: 1390745628}
   - component: {fileID: 1390745627}
   - component: {fileID: 1390745632}
+  - component: {fileID: 1390745634}
   - component: {fileID: 1390745631}
   - component: {fileID: 1390745633}
   m_Layer: 0
@@ -1345,6 +1346,28 @@ MonoBehaviour:
   healthText: {fileID: 53313639}
   shieldText: {fileID: 1160312250}
   shieldSprite: {fileID: 1929286618}
+  animator: {fileID: 0}
+--- !u!95 &1390745634
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390745625}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9c53caf0a2a92b429d926fd9d4b30b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1808078508
 GameObject:
   m_ObjectHideFlags: 0

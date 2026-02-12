@@ -14,9 +14,14 @@ public class PlayerHealth : MonoBehaviour {
 
     public GameObject shieldSprite;
 
+    public Animator animator; // A ref to the animator.
+
     private void Awake() {
         // Set current health with inspector value.
         currentHealth = maxHealth;
+
+        // Get a ref to the animator component.
+        animator = GetComponent<Animator>();
 
         RefreshHUD();
         RefreshShieldVisual();
@@ -31,6 +36,10 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         currentHealth -= damage;
+
+        if (currentHealth > 0 && animator != null) {
+            animator.SetTrigger("Hit");
+        }
 
         // Reload the scene if the players health goes below 0.
         if (currentHealth < 0) {

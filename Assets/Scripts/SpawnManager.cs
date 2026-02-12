@@ -125,7 +125,7 @@ public class SpawnManager : MonoBehaviour {
         float rightX = camera.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 0.0f)).x + xOffset;
         float centerY = camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f)).y;
 
-        GameObject boss = Instantiate(bossPrefab, new Vector3(rightX, centerY, 0.0f), Quaternion.identity);
+        GameObject boss = Instantiate(bossPrefab, new Vector3(rightX, centerY, 0.0f), Quaternion.Euler(0.0f, 0.0f, -90.0f));
 
         activeBoss = boss;
         isBossActive = true;
@@ -155,7 +155,7 @@ public class SpawnManager : MonoBehaviour {
         GameObject pickupPrefab = pickupPrefabs[Random.Range(0, pickupPrefabs.Length)];
 
         // Create the selected pickup.
-        Instantiate(pickupPrefab, spawnPosition, Quaternion.Euler(0.0f, 0.0f, -90.0f));
+        Instantiate(pickupPrefab, spawnPosition, Quaternion.identity);
     }
 
     // Calculates spawn interval based on elapsed time, to increase difficulty.

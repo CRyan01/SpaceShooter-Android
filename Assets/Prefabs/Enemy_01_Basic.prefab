@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4028604774374723147}
   - component: {fileID: 952781937822050280}
   - component: {fileID: 6676276040007911014}
+  - component: {fileID: -2953091025784505328}
   - component: {fileID: 6317926373175096680}
   - component: {fileID: 7911808180110750966}
   - component: {fileID: 3735547319663587417}
@@ -153,6 +154,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &-2953091025784505328
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516805961085637840}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9c53caf0a2a92b429d926fd9d4b30b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6317926373175096680
 MonoBehaviour:
   m_ObjectHideFlags: 0

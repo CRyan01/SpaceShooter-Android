@@ -11,9 +11,14 @@ public class EnemyHealth : MonoBehaviour {
 
     private bool isDead = false; // flags if the enemy has died or not.
 
+    [SerializeField] private Animator animator; // A ref to the animator.
+
     private void Awake() {
         // Set current health with inspector value.
         currentHealth = maxHealth;
+
+        // Get a ref to the animator component.
+        animator = GetComponent<Animator>();
     }
 
     // When the enemy takes a hit reduce health by a set amount.
@@ -25,6 +30,10 @@ public class EnemyHealth : MonoBehaviour {
 
         // Decuct the damage taken from current health.
         currentHealth -= damage;
+
+        if (currentHealth > 0 && animator != null) {
+            animator.SetTrigger("Hit");
+        }
 
         // Destroy the enemy if health goes below 0.
         if (currentHealth <= 0) {

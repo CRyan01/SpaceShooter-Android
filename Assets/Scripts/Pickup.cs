@@ -20,7 +20,7 @@ public class Pickup : MonoBehaviour {
 
     private void Update() {
         // Move the pickup downwards.
-        transform.position += Vector3.down * fallSpeed * Time.deltaTime;
+        transform.position += Vector3.left * fallSpeed * Time.deltaTime;
     }
 
     // When the pickup collides with another object.
