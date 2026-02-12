@@ -155,7 +155,7 @@ public class SpawnManager : MonoBehaviour {
         GameObject pickupPrefab = pickupPrefabs[Random.Range(0, pickupPrefabs.Length)];
 
         // Create the selected pickup.
-        Instantiate(pickupPrefab, spawnPosition, Quaternion.identity);
+        Instantiate(pickupPrefab, spawnPosition, Quaternion.Euler(0.0f, 0.0f, -90.0f));
     }
 
     // Calculates spawn interval based on elapsed time, to increase difficulty.
@@ -181,7 +181,7 @@ public class SpawnManager : MonoBehaviour {
         GameObject enemyPrefab = spawnPool[Random.Range(0, spawnPool.Count)];
 
         // Create the selected enemy.
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        Instantiate(enemyPrefab, spawnPosition, Quaternion.Euler(0.0f, 0.0f, -90.0f));
     }
 
     // Build the spawn pool by adding tiered arrays to the list of possible spawns

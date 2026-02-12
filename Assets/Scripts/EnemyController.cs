@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour {
         // Check if enough time passed to fire another bullet.
         if (Time.time >= nextShotTime) {
             // Spawn a bullet at the firepoint.
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0.0f, 0.0f, -90.0f));
             // Set the time for the next shot.
             nextShotTime = Time.time + (1.0f / fireRate);
         }
