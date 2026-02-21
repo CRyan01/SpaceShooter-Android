@@ -10,22 +10,22 @@ public class DestroyOutOfBounds : MonoBehaviour {
     [SerializeField] private bool destroyLeft = true;
     [SerializeField] private bool destroyRight = true;
 
-    private Camera camera; // a ref to the main camera.
+    private Camera cam; // a ref to the main camera.
 
     void Start() {
-        camera = Camera.main; // get a ref to the main camera.
+        cam = Camera.main; // get a ref to the main camera.
     }
 
     void Update() {
-        if (camera == null) {
+        if (cam == null) {
             return;
         }
 
         // Get current bounds in world space.
-        float leftX = camera.ViewportToWorldPoint(new Vector3(0f, 0.5f, 0.0f)).x - padding;
-        float rightX = camera.ViewportToWorldPoint(new Vector3(1f, 0.5f, 0.0f)).x + padding;
-        float bottomY = camera.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0.0f)).y - padding;
-        float topY = camera.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0.0f)).y + padding;
+        float leftX = cam.ViewportToWorldPoint(new Vector3(0f, 0.5f, 0.0f)).x - padding;
+        float rightX = cam.ViewportToWorldPoint(new Vector3(1f, 0.5f, 0.0f)).x + padding;
+        float bottomY = cam.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0.0f)).y - padding;
+        float topY = cam.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0.0f)).y + padding;
 
         // Get the objects current position.
         Vector3 currentPosition = transform.position;

@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79569973662f2874aa80e205c2697c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 2
   explosionPrefab: {fileID: 542459209908818219, guid: 8e450e783c672f446b9a06a8e0e2bcbd, type: 3}
   explosionFadeTime: 0.25
   debrisPrefabs:
@@ -200,6 +200,7 @@ MonoBehaviour:
   collisionDamage: 1
   collisionCooldown: 0.25
   scoreValue: 15
+  isFinalBoss: 0
 --- !u!114 &5527268854405009537
 MonoBehaviour:
   m_ObjectHideFlags: 0

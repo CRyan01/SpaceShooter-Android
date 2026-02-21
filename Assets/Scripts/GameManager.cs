@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class PauseManager : MonoBehaviour {
+public class GameManager : MonoBehaviour {
     private bool isPaused; // flags if the game is paused or not.
 
     public TMP_Text pauseButtonText;
@@ -22,5 +22,14 @@ public class PauseManager : MonoBehaviour {
             pauseButtonText.text = "Unpause";
             Time.timeScale = 0.0f;
         }
+    }
+
+    // Quits the game.
+    public void ExitGame() {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
     }
 }

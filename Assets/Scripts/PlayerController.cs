@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject bulletPrefab; // the bullet object prefab.
     public float fireRate = 8.0f; // how many bullets are fired a second.
 
-    Camera camera; // reference to the main camera.
+    Camera cam; // reference to the main camera.
 
     float yMin, yMax; // top and bottom movement limits.
     float targetY; // target y position based on input.
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     private float baseFireRate; // the players base fire rate.
 
     void Start() {
-        camera = Camera.main; // get a ref to the main camera.
+        cam = Camera.main; // get a ref to the main camera.
         GetBounds(); // get the screen bounds.
         targetY = transform.position.y; // set the target position to the current position.
 
@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour {
     // Calculate the left and right screen bounds in world space.
     void GetBounds() {
         // Convert the left and right sides of the viewport to world space.
-        float bottom = camera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
-        float top = camera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+        float bottom = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
+        float top = cam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
 
         // Apply padding to prevent clipping.
         yMin = bottom + padding;
@@ -45,20 +45,18 @@ public class PlayerController : MonoBehaviour {
 
     // Read the players input depending on platform.
     void ReadInput() {
-#if UNITY_EDITOR || UNITY_STANDALONE
         // Get mouse input for editor testing.
         if (Input.GetMouseButton(0)) {
-            var worldPosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            var worldPosition = cam.ScreenToWorldPoint(Input.mousePosition);
             targetY = worldPosition.y;
         }
-#else
+
         // Get touch input for android.
         if (Input.touchCount > 0) {
             var touchInput = Input.GetTouch(0);
-            var worldPosition = camera.ScreenToWorldPoint(touchInput.position);
-            targetX = worldPosition.y;
+            var worldPosition = cam.ScreenToWorldPoint(touchInput.position);
+            targetY = worldPosition.y;
         }
-#endif
     }
 
     // Move the ship horizontally.

@@ -28,7 +28,7 @@ public class SpawnManager : MonoBehaviour {
     private bool isBossActive = false;
     private GameObject activeBoss = null;
 
-    private Camera camera; // a ref to the main camera to get bounds.
+    private Camera cam; // a ref to the main camera to get bounds.
     private float nextSpawnTime; // time until the next spawn.
 
     public GameObject[] pickupPrefabs; // an array of pickups to spawn.
@@ -39,12 +39,12 @@ public class SpawnManager : MonoBehaviour {
 
     private void Start() {
         // Get a ref to the camera to get viewport bounds.
-        camera = Camera.main;
+        cam = Camera.main;
     }
 
     private void Update() {
         // Ensure there is a valid camera reference.
-        if (camera == null) {
+        if (cam == null) {
             return;
         }
         // Ensure there is a timer instance.
@@ -126,8 +126,8 @@ public class SpawnManager : MonoBehaviour {
             return;
         }
 
-        float rightX = camera.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 0.0f)).x + xOffset;
-        float centerY = camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f)).y;
+        float rightX = cam.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 0.0f)).x + xOffset;
+        float centerY = cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f)).y;
 
         GameObject boss = Instantiate(bossPrefab, new Vector3(rightX, centerY, 0.0f), Quaternion.Euler(0.0f, 0.0f, -90.0f));
 
@@ -229,9 +229,9 @@ public class SpawnManager : MonoBehaviour {
     // Returns a spawn position on the right side of the screen.
     private Vector3 GetRightEdgeSpawnPosition() {
         // Get bounds from viewport and apply padding.
-        float bottomY = camera.ViewportToWorldPoint(new Vector3(0.0f, 0.0f, 0.0f)).y + yPadding;
-        float topY = camera.ViewportToWorldPoint(new Vector3(0.0f, 1.0f, 0.0f)).y - yPadding;
-        float rightX = camera.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 0.0f)).x + xOffset;
+        float bottomY = cam.ViewportToWorldPoint(new Vector3(0.0f, 0.0f, 0.0f)).y + yPadding;
+        float topY = cam.ViewportToWorldPoint(new Vector3(0.0f, 1.0f, 0.0f)).y - yPadding;
+        float rightX = cam.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 0.0f)).x + xOffset;
 
         // Generate a random y within screen bounds to vary spawns.
         float randomY = Random.Range(bottomY, topY);
