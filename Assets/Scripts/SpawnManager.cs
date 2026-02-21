@@ -58,10 +58,14 @@ public class SpawnManager : MonoBehaviour {
         // If a boss was active, but is now destroyed, clear the active boss state.
         if (isBossActive && activeBoss == null) {
             isBossActive = false;
+            Timer.Instance.StartTimer();
+        } else if (isBossActive) {
+            // Stop the timer if the boss is still active.
+            Timer.Instance.StopTimer();
         }
 
-        // Trigger bosses at fixed times.
-        TrySpawnBosses(elapsedTime);
+            // Trigger bosses at fixed times.
+            TrySpawnBosses(elapsedTime);
 
         // When the main boss appears, stop normal enemy spawns forever.
         if (stopNormalSpawnsAfterMainBoss && mainBossSpawned) {

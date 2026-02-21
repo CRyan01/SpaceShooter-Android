@@ -83,6 +83,8 @@ public class PlayerController : MonoBehaviour {
         if (Time.time >= nextShotTime) {
             // Spawn a bullet at the firepoint.
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            // Play a sound effect.
+            AudioManager.Instance.PlayerFired();
             // Set the time for the next shot.
             nextShotTime = Time.time + (1.0f / fireRate);
         }

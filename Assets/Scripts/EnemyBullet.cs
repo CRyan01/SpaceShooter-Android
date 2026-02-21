@@ -6,8 +6,8 @@ public class EnemyBullet : MonoBehaviour {
     public int damage = 1; // the bullets damage.
 
     void Update() {
-        // Move the bullet downwards at a given speed.
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        // Move the bullet at a given speed.
+        transform.position += -transform.up * speed * Time.deltaTime;
     }
 
     // When a bullet collides with the player, reduce the players health

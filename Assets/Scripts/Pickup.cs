@@ -54,6 +54,9 @@ public class Pickup : MonoBehaviour {
             }
         }
 
+        // Play a sound effect
+        AudioManager.Instance.Pickup();
+
         Destroy(gameObject); // Destroy the pickup.
     }
 }

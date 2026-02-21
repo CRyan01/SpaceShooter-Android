@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4896590444394582829}
   - component: {fileID: 6759910577248744943}
   - component: {fileID: 6317926373175096680}
-  - component: {fileID: 7911808180110750966}
+  - component: {fileID: 1787427966048183946}
+  - component: {fileID: 1959728847178424441}
   - component: {fileID: 3735547319663587417}
   m_Layer: 0
   m_Name: Enemy_08_MiniBoss2
@@ -38,6 +39,9 @@ Transform:
   m_Children:
   - {fileID: 2958644601480225147}
   - {fileID: 339599217849975127}
+  - {fileID: 5738445549240869751}
+  - {fileID: 2819716852846181499}
+  - {fileID: 4468198385486267657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4028604774374723147
@@ -187,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79569973662f2874aa80e205c2697c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 50
   explosionPrefab: {fileID: 542459209908818219, guid: 8e450e783c672f446b9a06a8e0e2bcbd, type: 3}
   explosionFadeTime: 0.25
   debrisPrefabs:
@@ -195,7 +199,10 @@ MonoBehaviour:
   - {fileID: 8632074242307750272, guid: ef1bc205de5b8c947a3eead5eb5b0550, type: 3}
   - {fileID: 1745467554202029217, guid: de1d20c7921cb3d4f96b14f251101fbe, type: 3}
   animator: {fileID: 0}
---- !u!114 &7911808180110750966
+  collisionDamage: 1
+  collisionCooldown: 0.25
+  scoreValue: 200
+--- !u!114 &1787427966048183946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,13 +211,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 516805961085637840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e02a530a4c381640b6dfd9e3183ab16, type: 3}
+  m_Script: {fileID: 11500000, guid: efaa0dd606ef17a4789b9d4da5e175ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  fireRate: 1
-  firePoint: {fileID: 339599217849975127}
+  movementType: 3
+  moveSpeed: 2
+  amp: 1
+  freq: 2
+  slowDuration: 1.2
+  speedMultipier: 2
+  stopX: 5
+  hasStopped: 0
+--- !u!114 &1959728847178424441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516805961085637840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35292dadcd4ec5244b79029da6508e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0.5
+  firePoints:
+  - {fileID: 339599217849975127}
+  - {fileID: 5738445549240869751}
+  - {fileID: 2819716852846181499}
+  - {fileID: 4468198385486267657}
   bulletPrefab: {fileID: 8577110326777645843, guid: 952df8ca416b12448bb988667241ffe5, type: 3}
+  maxSpread: 6
 --- !u!114 &3735547319663587417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +259,37 @@ MonoBehaviour:
   destroyAbove: 0
   destroyLeft: 1
   destroyRight: 0
+--- !u!1 &1798184438830183262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5738445549240869751}
+  m_Layer: 0
+  m_Name: FirePoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5738445549240869751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798184438830183262}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5612482598105357998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3868105617249594569
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +374,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4017946156639094453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2819716852846181499}
+  m_Layer: 0
+  m_Name: FirePoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2819716852846181499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4017946156639094453}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.3, y: -1.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5612482598105357998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4987367072955434656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4468198385486267657}
+  m_Layer: 0
+  m_Name: FirePoint4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4468198385486267657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987367072955434656}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.7, y: -1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5612482598105357998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8937142869478248831
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339599217849975127}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +461,7 @@ Transform:
   m_GameObject: {fileID: 8937142869478248831}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalPosition: {x: 0.3, y: -1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

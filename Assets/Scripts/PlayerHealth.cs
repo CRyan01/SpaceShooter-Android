@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerHealth : MonoBehaviour {
@@ -42,9 +41,18 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         // Reload the scene if the players health goes below 0.
-        if (currentHealth < 0) {
+        if (currentHealth <= 0) {
+            currentHealth = 0;
             RefreshHUD();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            RefreshShieldVisual();
+
+            // Play a sound effect.
+            AudioManager.Instance.Explosion();
+
+            // Display the failure panel.
+            GameOverScreen.Instance.EndGame(false);
+
+            return;
         }
 
         RefreshHUD();
