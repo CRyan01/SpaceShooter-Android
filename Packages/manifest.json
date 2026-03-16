@@ -1,5 +1,23 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Game Package Registry by Google",
+      "url": "https://unityregistry-pa.googleapis.com/",
+      "scopes": [
+        "com.google"
+      ]
+    },
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.gameanalytics"
+      ]
+    }
+  ],
   "dependencies": {
+    "com.gameanalytics.sdk": "7.10.6",
+    "com.google.external-dependency-manager": "file:C:/Users/CR/Downloads/com.google.external-dependency-manager-1.2.187.tgz",
     "com.unity.collab-proxy": "2.11.3",
     "com.unity.feature.2d": "2.0.1",
     "com.unity.ide.rider": "3.0.36",

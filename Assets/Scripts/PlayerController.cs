@@ -85,6 +85,8 @@ public class PlayerController : MonoBehaviour {
             AudioManager.Instance.PlayerFired();
             // Set the time for the next shot.
             nextShotTime = Time.time + (1.0f / fireRate);
+
+            GAStats.ShotFired(); // increment the shotsFired.
         }
     }
 

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 
     private void Start() {
         isPaused = false; // start unpaused.
+
+        GAStats.ResetRun(); // Reset shots fired for this run.
     }
 
     public void TogglePause() {

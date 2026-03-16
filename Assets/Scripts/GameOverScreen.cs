@@ -56,6 +56,8 @@ public class GameOverScreen : MonoBehaviour {
         highScoreText.text = "High Score: " + highScore;
         timeText.text = "Time: " + FormatTime(time);
 
+        GAStats.SendShotsFired(); // Save shots fired for this run.
+
         // Show the panel.
         gameObject.SetActive(true);
     }
