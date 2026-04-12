@@ -87,6 +87,11 @@ public class PlayerController : MonoBehaviour {
             nextShotTime = Time.time + (1.0f / fireRate);
 
             GAStats.ShotFired(); // increment the shotsFired.
+
+            // If 100 or more shots were fired try to unlock the trigger happy achievement.
+            if (GAStats.shotsFired >= 100 && PlayGamesManager.Instance != null) {
+                PlayGamesManager.Instance.UnlockTriggerHappy();
+            }
         }
     }
 

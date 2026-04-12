@@ -25,6 +25,11 @@ public class ScoreManager : MonoBehaviour {
             score = 0;
         }
 
+        // If the player gets 1000 or more score try to unlock the score hunter achievement.
+        if (score >= 1000 && PlayGamesManager.Instance != null) {
+            PlayGamesManager.Instance.UnlockScoreHunter();
+        }
+
         UpdateUI();
     }
 

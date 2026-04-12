@@ -66,6 +66,19 @@ public class EnemyHealth : MonoBehaviour {
             ScoreManager.Instance.AddScore(scoreValue);
         }
 
+        // Increment the number of enemies killed.
+        GAStats.EnemyKilled();
+
+        if (PlayGamesManager.Instance != null) {
+            // Try to unlock the first kill achievement.
+            PlayGamesManager.Instance.UnlockFirstKill();
+
+            // Try to unlock the sharpshooter achievement.
+            if (GAStats.enemiesKilled >= 25) {
+                PlayGamesManager.Instance.UnlockSharpshooter();
+            }
+        }
+
         // Display the victory screen and end the game.
         if (isFinalBoss) {
             GameOverScreen.Instance.EndGame(true);

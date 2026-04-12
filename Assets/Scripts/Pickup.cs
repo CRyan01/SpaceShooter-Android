@@ -54,6 +54,14 @@ public class Pickup : MonoBehaviour {
             }
         }
 
+        // Increment the pickups collected stat.
+        GAStats.PickupCollected();
+
+        // Try to unlock the collector achievement when 10 or more pickups have been collected.
+        if (PlayGamesManager.Instance != null && GAStats.pickupsCollected >= 10) {
+            PlayGamesManager.Instance.UnlockCollector();
+        }
+
         // Play a sound effect
         AudioManager.Instance.Pickup();
 

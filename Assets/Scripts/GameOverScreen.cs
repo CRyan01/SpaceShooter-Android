@@ -56,7 +56,23 @@ public class GameOverScreen : MonoBehaviour {
         highScoreText.text = "High Score: " + highScore;
         timeText.text = "Time: " + FormatTime(time);
 
-        GAStats.SendShotsFired(); // Save shots fired for this run.
+        if (PlayGamesManager.Instance != null) {
+            // Submit the players score to the leaderboard.
+            PlayGamesManager.Instance.SubmitScore(score);
+
+            // If the player survived for 3 minutes try to unlock the survivor achievement.
+            if (time >= 180.0f) {
+                PlayGamesManager.Instance.UnlockSurvivor();
+            }
+        }
+
+        // Update final score & survival time stats.
+        GAStats.SetFinalScore(score);
+        GAStats.SetSurvivalTime(time);
+
+        // Send this runs stats and reset for the next run.
+        GAStats.SendRunStats();
+        GAStats.ResetRun();
 
         // Show the panel.
         gameObject.SetActive(true);
